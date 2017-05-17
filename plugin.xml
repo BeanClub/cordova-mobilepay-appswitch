@@ -56,8 +56,12 @@
         <header-file src="src/ios/CordovaMobilePayAppSwitch.h" />
         <source-file src="src/ios/CordovaMobilePayAppSwitch.m" />
 
-        <source-file src="src/ios/MobilePayManager/libMobilePayManager1.8.0.a" framework="true" />
-        <header-file src="src/ios/MobilePayManager/MobilePayManager.h" />
+        <source-file src="src/ios/MobilePayManager/libMobilePayManager1.8.0.a" target-dir="MobilePayManager"
+                     framework="true"/>
+        <header-file src="src/ios/MobilePayManager/MobilePayManager.h" target-dir="MobilePayManager"/>
+        <header-file src="src/ios/MobilePayManager/MobilePayCancelledPayment.h" target-dir="MobilePayManager"/>
+        <header-file src="src/ios/MobilePayManager/MobilePayPayment.h" target-dir="MobilePayManager"/>
+        <header-file src="src/ios/MobilePayManager/MobilePaySuccessfulPayment.h" target-dir="MobilePayManager"/>
 
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
         <array>
