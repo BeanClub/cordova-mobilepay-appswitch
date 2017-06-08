@@ -13,6 +13,7 @@
     <!-- android -->
     <platform name="android">
         <preference name="MERCHANT_ID" />
+        <preference name="CALLBACK_URL"/>
       <js-module src="www/plugin.js" name="plugin">
         <runs/>
 
@@ -29,7 +30,8 @@
         
         <config-file target="res/values/strings.xml" parent="/*">
             <string name="merchantId">$MERCHANT_ID</string>
-        </config-file>      
+            <string name="callbackUrl">$CALLBACK_URL</string>
+        </config-file>
 
 
         <source-file src="src/android/com/eqt1/cordovaMobilePayAppSwitch/CordovaMobilePayAppSwitch.java" target-dir="src/com/eqt1/cordovaMobilePayAppSwitch/" />
@@ -41,6 +43,7 @@
         <preference name="URL_IDENTIFIER" />
         <preference name="URL_SCHEME" />
         <preference name="MERCHANT_ID" />
+        <preference name="CALLBACK_URL"/>
         <js-module src="www/plugin.js" name="plugin">
             <runs/>
             <clobbers target="CordovaMobilePayAppSwitch" />
@@ -50,6 +53,7 @@
                 <param name="ios-package" value="CordovaMobilePayAppSwitch" onload="true" />
                 <preference name="urlScheme" value="$URL_SCHEME"/>
                 <preference name="merchantId" value="$MERCHANT_ID"/>
+                <preference name="callbackUrl" value="$CALLBACK_URL"/>
             </feature>
         </config-file>
 

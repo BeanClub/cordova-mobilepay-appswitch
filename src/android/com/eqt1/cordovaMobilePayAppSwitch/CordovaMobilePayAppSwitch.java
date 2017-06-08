@@ -29,6 +29,7 @@ public class CordovaMobilePayAppSwitch extends CordovaPlugin {
   public CordovaInterface cordova = null;
   public CallbackContext callbackContext = null;
   public int MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
+  public String callbackUrl = null;
 
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
@@ -36,7 +37,10 @@ public class CordovaMobilePayAppSwitch extends CordovaPlugin {
 
     int merchantResId = cordova.getActivity().getResources().getIdentifier("merchantId", "string", cordova.getActivity().getPackageName());
     String merchantId = cordova.getActivity().getString(merchantResId);
-    
+
+    int callbackResUrl = cordova.getActivity().getResources().getIdentifier("callbackUrl", "string", cordova.getActivity().getPackageName());
+    callbackUrl = cordova.getActivity().getString(callbackResUrl);
+
     MobilePay.getInstance().init(merchantId, Country.DENMARK);
 
     Log.d(TAG, "Initializing CordovaMobilePayAppSwitch");
@@ -56,8 +60,11 @@ public class CordovaMobilePayAppSwitch extends CordovaPlugin {
           Payment payment = new Payment();
           payment.setProductPrice(new BigDecimal(amount));
           payment.setOrderId(orderId);
+          payment.setServerCallbackUrl(callbackUrl);
 
           // Create a payment Intent using the Payment object from above.
+          MobilePay mp = MobilePay.getInstance();
+          mp.setCaptureType(CaptureType.RESERVE);
           Intent paymentIntent = MobilePay.getInstance().createPaymentIntent(payment);
 
           // We now jump to MobilePay to complete the transaction. Start MobilePay and wait for the result using an unique result code of your choice.
